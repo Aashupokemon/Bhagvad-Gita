@@ -609,3 +609,9 @@ Whether someone is discovering the Bhagavad Gita for the first time or returning
 **Built with ❤️, curiosity, and respect for timeless wisdom.**
 
 🕉️ **Read • Listen • Learn • Reflect**
+
+## GitHub Pages deployment
+
+The app is hosted from this repository at https://aashupokemon.github.io/Bhagvad-Gita/ . The Pages workflow builds and deploys on every push to main; it can also be started manually in the Actions tab.
+
+`npm run build:pages` creates `dist-pages/` using the same lesson components and content as the local app. All Pages assets use the `/Bhagvad-Gita/` base path. This is a browser-only build and requires no server, API key or account. The existing `npm run build` command remains available for the original Workers build.

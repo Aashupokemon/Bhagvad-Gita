@@ -101,7 +101,7 @@ export default function Home() {
                     height={1024}
                     fetchPriority="high"
                     decoding="async"
-                    src="/krishna-arjuna.png"
+                    src="./krishna-arjuna.png"
                     alt="Illustration of Krishna and Arjuna in peaceful conversation beside a chariot"
                   />
                   <div className="featured-shade" />
