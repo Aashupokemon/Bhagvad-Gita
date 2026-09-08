@@ -1,3 +1,41 @@
+# Gita Path — working learning app
+
+This repository now includes a runnable React application with 18 introductory chapter lessons, Sanskrit shlokas with transliteration and source links, separate child-friendly explanations and stories, reflection prompts, and a quiz for each chapter.
+
+## Run locally
+
+Requires Node.js 22.13 or newer.
+
+```sh
+npm ci
+npm run dev
+```
+
+Open the local address printed by the development server.
+
+```sh
+npm run build
+npm run lint
+npx tsc --noEmit
+```
+
+The app uses the generated Sites/Vinext starter and Cloudflare Workers build output. Lint covers authored application code; the unmodified generated component catalogue and its mobile hook are excluded from lint because they contain upstream lint violations. Type checking still covers all included TypeScript files.
+
+## Current scope
+
+- One introductory lesson and one multiple-choice quiz for each of the 18 chapters.
+- Everyone and Kids modes change the explanations, titles and example stories.
+- Quiz explanations, retries and next-chapter navigation.
+- Chapter completion records correct answers for the current visit only; refreshing resets progress.
+- Responsive layout and keyboard-accessible lesson tabs and answer choices.
+- No accounts, audio recordings, full 700-verse reader or server-side learner storage yet.
+
+The Sanskrit is ancient source text. English explanations, transliterations and modern stories are educational renderings, not quotations from a particular published translation. Each lesson links to the verse used for reference. Chapter names and verse numbering can differ by edition, especially chapter 13. The feature illustration was generated for this app. These short lessons introduce selected ideas, rather than claim to cover each chapter in full.
+
+The original project vision is preserved below; its future features are not all implemented in this version.
+
+---
+
 # 🕉️ Bhagavad Gita — A Journey of Wisdom
 
 # 📖 Bhagavad Gita
@@ -76,7 +114,6 @@ Rather than encouraging users to consume everything at once, this project follow
 
 The application will gradually introduce all 18 chapters.
 
-
 | #   | Chapter                         | Focus                                |
 | --- | ------------------------------- | ------------------------------------ |
 | 01  | Arjuna Vishada Yoga             | The Dilemma of Arjuna                |
@@ -97,7 +134,6 @@ The application will gradually introduce all 18 chapters.
 | 16  | Daivasura Sampad Vibhaga Yoga   | Divine and Demonic Qualities         |
 | 17  | Shraddhatraya Vibhaga Yoga      | Three Types of Faith                 |
 | 18  | Moksha Sannyasa Yoga            | Liberation and Renunciation          |
-
 
 ---
 
