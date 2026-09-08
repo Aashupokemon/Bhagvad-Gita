@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+/* oxlint-disable next/no-img-element -- A static asset avoids the Next image shim in this Vinext app. */
 import { useState } from 'react';
 import {
   ArrowRight,
@@ -96,11 +96,11 @@ export default function Home() {
             <div className="home-grid">
               <div>
                 <section className="featured">
-                  <Image
+                  <img
                     width={1536}
                     height={1024}
-                    priority
-                    unoptimized
+                    fetchPriority="high"
+                    decoding="async"
                     src="/krishna-arjuna.png"
                     alt="Illustration of Krishna and Arjuna in peaceful conversation beside a chariot"
                   />
