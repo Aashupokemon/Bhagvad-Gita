@@ -1,6 +1,12 @@
 'use client';
 /* oxlint-disable next/no-img-element -- A static asset avoids the Next image shim in this Vinext app. */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { localizeTree, languages, type Language } from './i18n';
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from '@/components/ui/native-select';
+import ReadAloud from './read-aloud';
 import {
   ArrowRight,
   ArrowLeft,
@@ -26,6 +32,11 @@ export default function Home() {
     [answer, setAnswer] = useState<number | null>(null),
     [checked, setChecked] = useState(false),
     [completed, setCompleted] = useState<number[]>([]);
+  const [language, setLanguage] = useState<Language>('en');
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  }, [language]);
   const c = chapters.find((c) => c.id === selected);
   function open(id: number) {
     setSelected(id);
@@ -34,11 +45,12 @@ export default function Home() {
     setChecked(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  return (
+  return localizeTree(
     <div className="app-shell">
       <header className="topbar">
         <button
           className="brand"
+          translate="no"
           onClick={() => setSelected(null)}
           aria-label="Gita Path home"
         >
@@ -70,6 +82,34 @@ export default function Home() {
           </button>
         </div>
       </header>
+      <div className="language-bar">
+        <label htmlFor="site-language">Language</label>
+        <NativeSelect
+          id="site-language"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value as Language)}
+        >
+          {languages.map((item) => (
+            <NativeSelectOption
+              key={item.code}
+              value={item.code}
+              translate="no"
+            >
+              {item.label}
+            </NativeSelectOption>
+          ))}
+        </NativeSelect>
+        {language !== 'en' && (
+          <p>
+            Machine translation — check English for the original explanation.
+            Sanskrit stays unchanged.
+          </p>
+        )}
+      </div>
+      <ReadAloud
+        lang={language}
+        key={`${selected}-${stage}-${kids}-${checked}-${language}`}
+      />
       <main>
         {!c ? (
           <>
@@ -403,13 +443,14 @@ export default function Home() {
           </>
         )}
         <footer>
-          <span className="footer-brand">
+          <span className="footer-brand" translate="no">
             <Feather size={17} /> gitapath
           </span>
           <p>Rooted in the Bhagavad Gita. Open to every curious mind.</p>
           <span>Learn · Reflect · Grow</span>
         </footer>
       </main>
-    </div>
+    </div>,
+    language,
   );
 }

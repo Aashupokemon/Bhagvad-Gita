@@ -615,3 +615,13 @@ Whether someone is discovering the Bhagavad Gita for the first time or returning
 The app is hosted from this repository at https://aashupokemon.github.io/Bhagvad-Gita/ . The Pages workflow builds and deploys on every push to main; it can also be started manually in the Actions tab.
 
 `npm run build:pages` creates `dist-pages/` using the same lesson components and content as the local app. All Pages assets use the `/Bhagvad-Gita/` base path. This is a browser-only build and requires no server, API key or account. The existing `npm run build` command remains available for the original Workers build.
+
+## Read aloud and languages
+
+Use the Language selector for English, Hindi, Spanish, French, German or Arabic. Arabic uses right-to-left layout. The bundled JSON language packs cover the lesson and story text, questions, answer choices, feedback and interface labels. Sanskrit and transliteration are preserved. Translations were generated locally with Argos/OPUS models through CTranslate2, with corrections to navigation labels and selected passages. They remain machine translations and have not had a complete scholarly or native-speaker review; English remains available for comparison.
+
+Listen reads the currently displayed content using the browser Speech Synthesis API. Pause, Resume, Stop, speed and installed voice selection are available. Changing the chapter, lesson tab, learning mode or language stops playback. Sanskrit and transliteration are excluded from speech rather than promising accurate recitation. Voices depend on the browser and operating system; a missing language voice produces guidance instead of deliberately selecting a different language. Some device voices may use online speech services. Translation switching itself needs no translation API or server.
+
+Run `node scripts/check-accessibility.mjs` to check all five language packs, React text translation, Sanskrit preservation, retained event handlers and speech chunking. These checks do not validate physical audio playback on every device.
+
+Translation model provenance: https://github.com/argosopentech/argospm-index . Language pairs and versions: en-hi 1.1, en-es 1.0, en-fr 1.9, en-de 1.3, en-ar 1.0. Models are not distributed with the app. OPUS-MT attribution: Jörg Tiedemann and Santhosh Thottingal, “OPUS-MT — Building open translation services for the World,” EAMT 2020. Model documentation identifies the original OPUS models as CC-BY 4.0.

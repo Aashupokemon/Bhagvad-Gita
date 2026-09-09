@@ -1036,3 +1036,113 @@ footer,
 .feedback {
   display: block;
 }
+.read-controls {
+  max-width: 1296px;
+  margin: 16px auto 0;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+}
+.read-controls .secondary {
+  padding: 9px 14px;
+}
+.read-controls select {
+  max-width: 250px;
+  height: 42px;
+}
+.speech-message {
+  flex-basis: 100%;
+  font-size: 14px;
+  color: #66735f;
+}
+.read-controls button:disabled {
+  opacity: 0.5;
+}
+@media (max-width: 1390px) {
+  .read-controls {
+    margin-inline: 30px;
+  }
+}
+@media (max-width: 520px) {
+  .read-controls {
+    margin-inline: 18px;
+    padding: 12px;
+  }
+  .read-controls select {
+    max-width: 220px;
+  }
+}
+.language-bar {
+  max-width: 1296px;
+  margin: 18px auto 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.language-bar label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.language-bar select {
+  height: 44px;
+  min-width: 160px;
+}
+.language-bar p {
+  font-size: 14px;
+  color: #68755e;
+  max-width: 700px;
+}
+html[dir='rtl'] .chapter-card,
+html[dir='rtl'] .brand,
+html[dir='rtl'] .shloka-card .text-button {
+  text-align: right;
+}
+html[dir='rtl'] .featured-shade {
+  background: linear-gradient(270deg, #f4e4bc, #f4e4bcee 40%, #f4e4bc65 75%);
+}
+html[dir='rtl'] .featured-content {
+  margin-left: auto;
+}
+html[dir='rtl'] .full-sanskrit,
+html[dir='rtl'] .transliteration,
+html[dir='rtl'] .daily-sanskrit {
+  direction: ltr;
+  text-align: left;
+}
+.full-sanskrit,
+.daily-sanskrit {
+  font-family: Arial, sans-serif;
+}
+@media (max-width: 1390px) {
+  .language-bar {
+    margin-inline: 30px;
+  }
+}
+@media (max-width: 520px) {
+  .language-bar {
+    margin-inline: 18px;
+  }
+  .read-controls select {
+    max-width: 100%;
+  }
+  .featured-content {
+    width: 100%;
+  }
+  .featured {
+    min-height: unset;
+  }
+  .topbar {
+    height: auto;
+    min-height: 85px;
+    padding-block: 12px;
+  }
+  .mode-control button {
+    white-space: normal;
+  }
+}
