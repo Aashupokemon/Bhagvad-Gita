@@ -3,15 +3,13 @@ import hi from './locales/hi.json';
 import es from './locales/es.json';
 import fr from './locales/fr.json';
 import de from './locales/de.json';
-import ar from './locales/ar.json';
-export type Language = 'en' | 'hi' | 'es' | 'fr' | 'de' | 'ar';
+export type Language = 'en' | 'hi' | 'es' | 'fr' | 'de';
 export const languages: { code: Language; label: string }[] = [
   { code: 'en', label: 'English' },
   { code: 'hi', label: 'हिन्दी' },
   { code: 'es', label: 'Español' },
   { code: 'fr', label: 'Français' },
   { code: 'de', label: 'Deutsch' },
-  { code: 'ar', label: 'العربية' },
 ];
 const dictionaries: Record<Language, Record<string, string>> = {
   en: {},
@@ -19,7 +17,6 @@ const dictionaries: Record<Language, Record<string, string>> = {
   es,
   fr,
   de,
-  ar,
 };
 export function translateText(text: string, lang: Language): string {
   const key = text.replace(/\s+/g, ' ').trim();

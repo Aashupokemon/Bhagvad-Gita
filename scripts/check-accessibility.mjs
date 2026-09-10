@@ -25,8 +25,10 @@ for (const name of ['i18n', 'speech-utils']) {
 }
 fs.cpSync('app/locales', path.join(cache, 'locales'), { recursive: true });
 const { translateText, localizeTree } = require(path.join(cache, 'i18n.cjs'));
-const { splitSpeech } = require(path.join(cache, 'speech-utils.cjs'));
-const codes = ['hi', 'es', 'fr', 'de', 'ar'];
+const { splitSpeech, matchingVoices } = require(
+  path.join(cache, 'speech-utils.cjs'),
+);
+const codes = ['hi', 'es', 'fr', 'de'];
 let count;
 for (const code of codes) {
   const d = JSON.parse(fs.readFileSync(`app/locales/${code}.json`, 'utf8'));
@@ -70,5 +72,15 @@ assert.equal(chunks.join(' '), text);
 for (const text of ['यह एक छोटा पाठ है।', 'هذا درس قصير.'])
   assert.equal(splitSpeech(text).join(' '), text);
 console.log(
-  `Passed: ${count} entries in each of 5 languages, translated rendering, preserved Sanskrit and handlers, fallback text, and speech chunking.`,
+  `Passed: ${count} entries in each of 4 languages, translated rendering, preserved Sanskrit and handlers, fallback text, and speech chunking.`,
 );
+
+assert.deepEqual(
+  matchingVoices(
+    [{ lang: 'en-US' }, { lang: 'hi_IN' }, { lang: 'hi-IN' }, { lang: 'HI' }],
+    'hi',
+  ).map((v) => v.lang),
+  ['hi_IN', 'hi-IN', 'HI'],
+);
+assert.deepEqual(matchingVoices([], 'hi'), []);
+assert.deepEqual(matchingVoices([{ lang: 'en-IN' }], 'hi'), []);

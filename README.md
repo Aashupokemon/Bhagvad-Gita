@@ -618,10 +618,18 @@ The app is hosted from this repository at https://aashupokemon.github.io/Bhagvad
 
 ## Read aloud and languages
 
-Use the Language selector for English, Hindi, Spanish, French, German or Arabic. Arabic uses right-to-left layout. The bundled JSON language packs cover the lesson and story text, questions, answer choices, feedback and interface labels. Sanskrit and transliteration are preserved. Translations were generated locally with Argos/OPUS models through CTranslate2, with corrections to navigation labels and selected passages. They remain machine translations and have not had a complete scholarly or native-speaker review; English remains available for comparison.
+Use the Language selector for English, Hindi, Spanish, French or German. The bundled JSON language packs cover the lesson and story text, questions, answer choices, feedback and interface labels. Sanskrit and transliteration are preserved. Translations were generated locally with Argos/OPUS models through CTranslate2, with corrections to navigation labels and selected passages. They remain machine translations and have not had a complete scholarly or native-speaker review; English remains available for comparison.
 
 Listen reads the currently displayed content using the browser Speech Synthesis API. Pause, Resume, Stop, speed and installed voice selection are available. Changing the chapter, lesson tab, learning mode or language stops playback. Sanskrit and transliteration are excluded from speech rather than promising accurate recitation. Voices depend on the browser and operating system; a missing language voice produces guidance instead of deliberately selecting a different language. Some device voices may use online speech services. Translation switching itself needs no translation API or server.
 
-Run `node scripts/check-accessibility.mjs` to check all five language packs, React text translation, Sanskrit preservation, retained event handlers and speech chunking. These checks do not validate physical audio playback on every device.
+Run `node scripts/check-accessibility.mjs` to check all four translated language packs, React text translation, Sanskrit preservation, retained event handlers and speech chunking. These checks do not validate physical audio playback on every device.
 
-Translation model provenance: https://github.com/argosopentech/argospm-index . Language pairs and versions: en-hi 1.1, en-es 1.0, en-fr 1.9, en-de 1.3, en-ar 1.0. Models are not distributed with the app. OPUS-MT attribution: Jörg Tiedemann and Santhosh Thottingal, “OPUS-MT — Building open translation services for the World,” EAMT 2020. Model documentation identifies the original OPUS models as CC-BY 4.0.
+Translation model provenance: https://github.com/argosopentech/argospm-index . Language pairs and versions: en-hi 1.1, en-es 1.0, en-fr 1.9, en-de 1.3. Models are not distributed with the app. OPUS-MT attribution: Jörg Tiedemann and Santhosh Thottingal, “OPUS-MT — Building open translation services for the World,” EAMT 2020. Model documentation identifies the original OPUS models as CC-BY 4.0.
+
+## Creative activities
+
+Colorit includes three original AI-generated outline sketches with a touch/mouse/pen brush, custom colors, brush sizes, 30-step undo, reset, and PNG export. Sketch drafts remain during the current visit, including switching tabs; reload clears them. White paints over color while preserving outlines. Download outlines to color on paper.
+
+Gallery includes an original colored Krishna–Arjuna illustration and the three outline artworks. These are symbolic artistic interpretations. Quotes offers three original educational paraphrases (2.47, 6.26, 17.15), verse context links, localized PNG downloads and device sharing where supported. Unsupported sharing falls back to downloading. The new creative interface and quotes are translated into all four supported translation languages.
+
+Hindi speech requires a Hindi voice exposed by the device/browser. Voice lists refresh after delayed loading, and Listen checks the latest list; an English voice is never selected for Hindi text. Install a Hindi speech voice in device settings if none is available. Physical audio playback still depends on the device.

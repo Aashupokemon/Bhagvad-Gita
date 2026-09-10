@@ -8,7 +8,7 @@ import {
   NativeSelectOption,
 } from '@/components/ui/native-select';
 
-import { splitSpeech } from './speech-utils';
+import { splitSpeech, matchingVoices } from './speech-utils';
 export default function ReadAloud({
   lang = 'en',
   scope = 'main',
@@ -35,6 +35,10 @@ export default function ReadAloud({
     const activeGeneration = generation;
     const update = () => setVoices(window.speechSynthesis.getVoices());
     queueMicrotask(update);
+    // Some browsers load device voices late without dispatching voiceschanged.
+    const retries = [250, 750, 1500, 3000].map((delay) =>
+      window.setTimeout(update, delay),
+    );
     const onHide = () => {
       activeGeneration.current++;
       window.speechSynthesis.cancel();
@@ -43,15 +47,14 @@ export default function ReadAloud({
     window.addEventListener('pagehide', onHide);
     window.speechSynthesis.addEventListener('voiceschanged', update);
     return () => {
+      retries.forEach(window.clearTimeout);
       activeGeneration.current++;
       window.speechSynthesis.cancel();
       window.speechSynthesis.removeEventListener('voiceschanged', update);
       window.removeEventListener('pagehide', onHide);
     };
   }, []);
-  const matching = voices.filter(
-    (v) => v.lang.toLowerCase().split('-')[0] === lang.split('-')[0],
-  );
+  const matching = matchingVoices(voices, lang);
   function stop() {
     generation.current++;
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
@@ -86,13 +89,20 @@ export default function ReadAloud({
       setMessage('There is no visible text to read.');
       return;
     }
+    const available = window.speechSynthesis.getVoices();
+    setVoices(available);
+    const freshMatching = matchingVoices(available, lang);
     const chosen =
-      matching.find((v) => v.voiceURI === voice) ||
-      matching.find((v) => v.default) ||
-      matching[0];
-    if (!chosen && voices.length) {
+      freshMatching.find((v) => v.voiceURI === voice) ||
+      freshMatching.find((v) => v.default) ||
+      freshMatching[0];
+    if (!chosen) {
       setMessage(
-        'No voice for this language is installed on this device. Add a matching voice in your device’s speech settings.',
+        !available.length
+          ? 'Voices are still loading. Wait a moment, then press Listen again.'
+          : lang === 'hi'
+            ? 'Add a Hindi voice in your device speech settings, then reopen this page. Hindi text needs a Hindi voice.'
+            : "No voice for this language is installed on this device. Add a matching voice in your device's speech settings.",
       );
       return;
     }

@@ -12,3 +12,12 @@ export function splitSpeech(text: string, max = 180): string[] {
   if (part) chunks.push(part);
   return chunks;
 }
+
+export function matchingVoices<T extends { lang: string }>(
+  voices: T[],
+  language: string,
+): T[] {
+  const base = (tag: string) =>
+    tag.toLowerCase().replace(/_/g, '-').split('-')[0];
+  return voices.filter((voice) => base(voice.lang) === base(language));
+}

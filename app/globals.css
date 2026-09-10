@@ -1146,3 +1146,42 @@ html[dir='rtl'] .daily-sanskrit {
     white-space: normal;
   }
 }
+
+/* Creative spaces share the learning app's warm paper and ink palette. */
+.site-tabs { gap: 0; }
+.site-nav { width: min(1180px, calc(100% - 40px)); margin: 0 auto 20px; height: auto; padding: 5px; border: 1px solid #d7d9ce; background: #eeeee7; }
+.site-nav [role=tab] { min-height: 44px; font-size: 1rem; }
+.creative-page { font-size: 1rem; padding-bottom: 36px; }
+.creative-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin: 18px 0 30px; }
+.creative-heading h1 { font: 2.7rem Georgia, serif; margin: 8px 0 12px; }
+.creative-note { max-width: 420px; color: #59645a; font-size: .9rem; line-height: 1.6; }
+.color-workspace { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 28px; align-items: start; }
+.art-tools { display: grid; gap: 14px; padding: 22px; border: 1px solid #d7d9ce; border-radius: 16px; background: #fff; }
+.art-tools label { font-weight: 600; font-size: .9rem; }
+.art-tools p, .art-tools output { font-size: .9rem; line-height: 1.6; }
+.art-tools button { justify-content: center; }
+.palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.palette button { min-width: 32px; height: 34px; border-radius: 50%; border: 1px solid #8b8f86; }
+.palette button[aria-pressed=true] { outline: 3px solid #233d33; outline-offset: 3px; }
+.art-tools input[type=color] { width: 100%; height: 40px; }
+.drawing-paper { background: white; padding: 12px; border: 1px solid #d7d9ce; box-shadow: 0 8px 30px #233d3310; }
+.drawing-paper canvas { display: block; width: 100%; aspect-ratio: 1; touch-action: none; cursor: crosshair; }
+.drawing-paper a { display: block; padding: 12px; text-align: center; font-size: .9rem; }
+.art-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 24px 0; }
+.art-grid figure { margin: 0; background: white; border: 1px solid #d7d9ce; border-radius: 12px; overflow: hidden; }
+.art-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.art-grid figcaption { padding: 20px; }
+.art-grid h3 { margin: 0 0 12px; font: 1.35rem Georgia, serif; }
+.gallery-feature { margin: 0 0 36px; display: grid; grid-template-columns: 1.6fr 1fr; background: #233d33; color: #fffaf1; border-radius: 16px; overflow: hidden; }
+.gallery-feature img { width: 100%; height: auto; }
+.gallery-feature figcaption { padding: 36px; align-self: center; }
+.gallery-feature h2 { font: 2rem Georgia, serif; margin-bottom: 20px; }
+.quote-image { min-height: 420px; color: #fffaf1; display: flex; flex-direction: column; justify-content: space-between; padding: 30px; border: 8px double #d8b86f; }
+.quote-image p { font: 1.65rem/1.5 Georgia, serif; padding: 26px 0; }
+.quote-image span, .quote-image strong { color: #e9c981; letter-spacing: .06em; font-size: .9rem; }
+.quote-image small { display: block; font-size: .85rem; padding-top: 10px; }
+.quote-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 12px; }
+.creative-page a { text-decoration: underline; text-underline-offset: 3px; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+@media(max-width: 800px) { .art-grid { grid-template-columns: 1fr 1fr; } .color-workspace { grid-template-columns: 200px minmax(0, 1fr); gap: 16px; } .gallery-feature { grid-template-columns: 1fr; } .creative-heading { align-items: start; flex-direction: column; } }
+@media(max-width: 560px) { .art-grid, .color-workspace { grid-template-columns: 1fr; } .art-tools { grid-template-columns: 1fr 1fr; padding: 16px; } .art-tools p, .art-tools .palette, .art-tools output { grid-column: 1 / -1; } .palette { grid-template-columns: repeat(6, 1fr); } .site-nav { width: calc(100% - 24px); } .creative-heading h1 { font-size: 2.2rem; } }
